@@ -1,12 +1,9 @@
-const slugify = require('slugify')
-
-const siteName = 'SITE_NAME'
-const description = 'SITE_DESCRIPTION'
+const siteName = 'Daily Bruin | Registration Issue 2019'
+const description = 'Welcome to the Daily Bruin\'s 2019 Registration Issue!'
 const image =
   'https://chancellor.ucla.edu/wp-content/uploads/2018/07/ChancellorBlock_1366x912_acf_cropped.jpg'
-const year = 'CURRENT_YEAR'
 
-const url = `https://features.dailybruin.com/${year}/${slugify(siteName)}`
+const url = 'https://features.dailybruin.com/2019/registration-issue'
 
 module.exports = {
   siteMetadata: {
@@ -40,7 +37,7 @@ module.exports = {
     {
       resolve: '@dailybruin/gatsby-source-kerckhoff',
       options: {
-        slug: 'online.demoaml',
+        slug: 'interactive.2019.regissue',
       },
     },
     {

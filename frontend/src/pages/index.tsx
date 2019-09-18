@@ -10,6 +10,7 @@ import {
 } from '@dailybruin/lux'
 import Game from '../components/Game'
 import Me from '../components/Me'
+import Header from '../components/Header'
 
 export const query = graphql`
   query {
@@ -26,6 +27,20 @@ export const query = graphql`
 const IndexPage = ({ data }) => (
   <>
     <Head {...data.site.siteMetadata} />
+    <Header
+      sections={[
+        'NEWS',
+        'OPINION',
+        'ARTS',
+        'SPORTS',
+        'NEWS',
+        'OPINION',
+        'ARTS',
+        'SPORTS',
+      ]}
+    />
+    <Game />
+    <Game />
     <Game />
     <Me />
     <Footer developers="Dustin Newman" copyrightYear={2019} />

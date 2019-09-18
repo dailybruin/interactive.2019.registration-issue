@@ -17,11 +17,12 @@ services:
     build:
       context: ../frontend
       dockerfile: Dockerfile.dev
+    command: gatsby develop -H 0.0.0.0 -p 1234
     environment:
       - NODE_ENV=development
       - GATSBY_WEBPACK_PUBLICPATH=/
+      - GATSBY_TELEMETRY_DISABLED=1
     volumes:
-      - /usr/src/frontend/node_modules
       - ./../frontend:/usr/src/frontend
     ports:
       - "1234:1234"

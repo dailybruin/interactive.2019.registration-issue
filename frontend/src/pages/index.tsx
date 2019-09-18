@@ -1,5 +1,5 @@
-import * as React from 'react'
-import { graphql } from 'gatsby'
+import * as React from 'react';
+import { graphql } from 'gatsby';
 import {
   Article,
   CoverPhoto,
@@ -8,7 +8,7 @@ import {
   XPosition,
   YPosition,
 } from '@dailybruin/lux'
-import Game from '../components/Game'
+import Game from "../components/GAS";
 import Me from '../components/Me'
 
 export const query = graphql`

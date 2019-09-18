@@ -3,7 +3,7 @@ const { getUser, updateScore } = require("../services/UserService");
 
 router.get("/api/me", async (req, res, next) => {
     console.log("Inside api/me")
-    if (req.session) {
+    if (req.session.user) {
         console.log("Session exists", req.session);
         const { username } = req.session.user;
         try {
@@ -41,7 +41,7 @@ router.post("/api/user", async (req, res, next) => {
 
 router.post("/api/score", async (req, res, next) => {
     console.log("Inside api/user")
-    const { username } = req.session.user;
+    const { username } = req.session.passport.user;
     console.log("Username", username)
     if (username) {
         let user;

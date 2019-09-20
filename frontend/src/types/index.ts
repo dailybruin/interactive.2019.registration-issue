@@ -9,6 +9,7 @@ export interface BoardProps {
     image: {
         url: string;
     };
+    onComplete: () => void;
 };
 export interface BoardState {
     clicked: {

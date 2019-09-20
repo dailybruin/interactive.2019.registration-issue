@@ -13,6 +13,7 @@ import Game from "../components/GAS";
 import { css } from 'emotion';
 import rip from "../images/rip.png";
 import { notMobile, mobile } from '../components/Shared/mediaQueries';
+import Navbar from '../components/Navbar';
 
 export const query = graphql`
   query {
@@ -60,6 +61,14 @@ const IndexPage = ({ data }) => (
       }
     `}>explainer for the interactive and game here! explainer for the interactive and game here! explainer for the interactive and game here! explainer for the interactive and game here! explainer for the interactive and game here! explainer for the interactive and game here! explainer for the interactive and game here!</p>
     <Game />
+    <Navbar sections={[
+      'NEWS',
+      'OPINION',
+      'ARTS',
+      'SPORTS',
+      'PRIME',
+      'PHOTO'
+    ]} />
     <Footer developers="Dustin Newman" copyrightYear={2019} />
   </div>
 )

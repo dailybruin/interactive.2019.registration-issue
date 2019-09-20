@@ -11,6 +11,7 @@ class Game extends React.PureComponent<GameProps, GameState> {
     constructor(props) {
         super(props);
         this.onSubmitUsername = this.onSubmitUsername.bind(this);
+        this.onLevelDone = this.onLevelDone.bind(this);
     }
 
     state: GameState = {
@@ -26,6 +27,7 @@ class Game extends React.PureComponent<GameProps, GameState> {
     }
 
     onLevelDone() {
+        console.log("OnLEVELDONE")
         const { level: old } = this.state;
         if (old + 1 >= NUM_LEVELS) {
             this.setState({
@@ -44,7 +46,7 @@ class Game extends React.PureComponent<GameProps, GameState> {
             display: flex;
             flex-flow: row wrap;
         `}>
-            <Board image={config.images[this.state.level]} />
+            <Board image={config.images[this.state.level]} onComplete={this.onLevelDone} />
             <Stats />
         </div>;
     }

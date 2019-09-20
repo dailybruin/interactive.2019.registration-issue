@@ -15,17 +15,15 @@ export interface BoardState {
         x: number;
         y: number;
     };
-    empty: {
-        x: number;
-        y: number;
-    };
+    emptyIndex: number;
+    shuffling: boolean;
     scaling: {
         width: number;
         height: number;
     };
     solved: boolean;
     tileSize: number;
-    board: object;
+    board: { x: number; y: number }[];
     numVertTiles: number;
     numHorTiles: number;
     image: any;

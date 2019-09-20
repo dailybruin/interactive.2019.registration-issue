@@ -8,7 +8,10 @@ router.get("/api/me", async (req, res, next) => {
         const { username } = req.session.user;
         try {
             const user = await getUser(username);
-            res.json(user);
+            res.json({
+                username: user.username,
+                score: user.score
+            });
             return next();
         } catch (err) {
             res.status(500).end();

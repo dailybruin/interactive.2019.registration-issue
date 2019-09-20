@@ -14,8 +14,9 @@ class Username extends React.PureComponent<UsernameProps, UsernameState> {
         username: ""
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
+    handleSubmit(e) {
+        e.preventDefault();
+        console.log("HANDLE SUBMIT")
         api.setUsername(this.state.username).then(() => this.props.onSubmit());
     }
 
@@ -36,9 +37,11 @@ class Username extends React.PureComponent<UsernameProps, UsernameState> {
             margin: 0;
             padding: 0;
             text-align: center;
+            display: flex;
+            flex-direction: column;
         `} onSubmit={this.handleSubmit}>
-                <input type="text" onChange={e => this.setState({ username: e.target.value })} value={this.state.username} />
-                <button type="submit">Submit</button>
+                <label htmlFor="username_form">Username</label>
+                <input name="username_form" type="text" onChange={e => this.setState({ username: e.target.value })} value={this.state.username} />
             </form>
         </div>
     }

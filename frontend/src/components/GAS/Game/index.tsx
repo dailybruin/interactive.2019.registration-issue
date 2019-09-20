@@ -1,4 +1,5 @@
 import * as React from "react";
+import { css } from "emotion";
 import { GameState, GameProps } from "../../../types";
 import config from "../../../config";
 import Board from "./Board";
@@ -39,9 +40,10 @@ class Game extends React.PureComponent<GameProps, GameState> {
     }
 
     render() {
-        return <div id="game_comp" style={{
-            display: "flex"
-        }}>
+        return <div id="game_comp" className={css`
+            display: flex;
+            flex-flow: row wrap;
+        `}>
             <Board image={config.images[this.state.level]} />
             <Stats />
         </div>;

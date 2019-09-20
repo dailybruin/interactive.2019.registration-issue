@@ -3,11 +3,18 @@ import Username from "../Username";
 import Game from "../Game";
 import { css } from "emotion";
 import { mobile, notMobile } from "../../Shared/mediaQueries";
+import { api } from "../../../utils";
 
 class StartScreen extends React.PureComponent<{}, {}> {
     constructor(props) {
         super(props);
         this.onSubmitUsername = this.onSubmitUsername.bind(this);
+    }
+
+    componentDidMount() {
+        api.getMe().then(res => res.status === 200 ? res.json() : undefined).then(res => this.setState({
+            verified: res ? true : false
+        }));
     }
 
     state = {

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { css } from "emotion";
 import { mobile, notMobile } from "../../Shared/mediaQueries";
+import Tallies from "./Tallies";
 
 export default class Scoreboard extends React.PureComponent<{}, {}> {
     render() {
@@ -11,7 +12,8 @@ export default class Scoreboard extends React.PureComponent<{}, {}> {
                     flex-basis: 0px;
                 }
             `}>
-                Hi
+                <h1>Leaderboard</h1>
+                <Tallies />
             </div>
         )
     }

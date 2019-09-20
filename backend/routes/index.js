@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { getUser, updateScore } = require("../services/UserService");
+const { getUsers, getUser, updateScore } = require("../services/UserService");
 
 router.get("/api/me", async (req, res, next) => {
     console.log("Inside api/me")
@@ -31,16 +31,35 @@ router.post("/api/user", async (req, res, next) => {
         let user = await getUser(username);
         console.log("User", user)
         if (user) {
-            req.session.user = user;
+            res.status(409).end();
+            return next();
         } else {
             user = await updateScore(username, 0);
             console.log("User", user)
             req.session.user = user;
+            res.json(user);
+            return next();
         }
-        res.json(user);
-        return next();
     }
 });
+
+router.get("/api/score", async (req, res, next) => {
+    let users;
+    try {
+        users = await getUsers();
+    } catch (err) {
+        res.status(500).end();
+        return next(err);
+    }
+
+    const scores = users.map(u => ({
+        username: u.username,
+        score: u.score
+    }));
+
+    res.json(scores);
+    return next();
+})
 
 router.post("/api/score", async (req, res, next) => {
     console.log("Inside api/user")

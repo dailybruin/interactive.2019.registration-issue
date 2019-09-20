@@ -30,5 +30,6 @@ function post(url, body) {
 export const api = {
     getMe: () => get("/api/me"),
     setUsername: username => post("/api/user", { username }),
-    score: () => post("/api/score", {})
+    score: () => post("/api/score", {}),
+    scores: () => get("/api/score")
 }

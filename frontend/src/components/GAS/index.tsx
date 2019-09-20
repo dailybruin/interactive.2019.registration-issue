@@ -16,7 +16,7 @@ const Box = ({ children }) => (
     </div>
 );
 
-export default class GameAndScoreboard extends React.PureComponent<{}, {}> {
+export default class GameAndScoreboard extends React.Component<{}, {}> {
     render() {
         return (
             <div className={css`

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GameStatsProps } from "../../types";
 
-export default class GameStatsBox extends React.PureComponent<GameStatsProps, {}> {
+export default class GameStatsBox extends React.Component<GameStatsProps, {}> {
     render() {
         return (
             <div style={{

@@ -6,7 +6,7 @@ export interface GameState {
 };
 
 export interface BoardProps {
-    image: {
+    imageObj: {
         url: string;
     };
     onComplete: () => void;
@@ -16,15 +16,17 @@ export interface BoardState {
         x: number;
         y: number;
     };
-    emptyIndex: number;
-    shuffling: boolean;
+    empty: {
+        x: number;
+        y: number;
+    };
     scaling: {
         width: number;
         height: number;
     };
     solved: boolean;
     tileSize: number;
-    board: { x: number; y: number }[];
+    board: object;
     numVertTiles: number;
     numHorTiles: number;
     image: any;
@@ -35,6 +37,7 @@ export interface UsernameProps {
 }
 export interface UsernameState {
     username: string;
+    taken: boolean;
 }
 
 export interface GameStatsProps {

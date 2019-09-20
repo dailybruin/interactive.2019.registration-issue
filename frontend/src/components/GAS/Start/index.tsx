@@ -5,7 +5,7 @@ import { css } from "emotion";
 import { mobile, notMobile } from "../../Shared/mediaQueries";
 import { api } from "../../../utils";
 
-class StartScreen extends React.PureComponent<{}, {}> {
+class StartScreen extends React.Component<{}, {}> {
     constructor(props) {
         super(props);
         this.onSubmitUsername = this.onSubmitUsername.bind(this);

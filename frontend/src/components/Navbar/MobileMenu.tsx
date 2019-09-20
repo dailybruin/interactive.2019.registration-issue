@@ -6,7 +6,7 @@ import close from './close.svg'
 
 const MOBILEBREAKPOINT = 800
 
-class Header__MobileMenu extends React.PureComponent<{ sections: string[]; }, {}> {
+class Header__MobileMenu extends React.Component<{ sections: string[]; }, {}> {
   constructor(props) {
     super(props)
     this.state = {

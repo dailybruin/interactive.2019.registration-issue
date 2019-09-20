@@ -7,7 +7,7 @@ import Stats from "./Stats";
 
 const NUM_LEVELS = config.images.length;
 
-class Game extends React.PureComponent<GameProps, GameState> {
+class Game extends React.Component<GameProps, GameState> {
     constructor(props) {
         super(props);
         this.onSubmitUsername = this.onSubmitUsername.bind(this);
@@ -29,6 +29,7 @@ class Game extends React.PureComponent<GameProps, GameState> {
     onLevelDone() {
         console.log("OnLEVELDONE")
         const { level: old } = this.state;
+        console.log("old level is " + old)
         if (old + 1 >= NUM_LEVELS) {
             this.setState({
                 level: NUM_LEVELS,
@@ -42,11 +43,14 @@ class Game extends React.PureComponent<GameProps, GameState> {
     }
 
     render() {
+        console.log(config.images)
+        console.log(this.state.level)
+        console.log(config.images[this.state.level])
         return <div id="game_comp" className={css`
             display: flex;
             flex-flow: row wrap;
         `}>
-            <Board image={config.images[this.state.level]} onComplete={this.onLevelDone} />
+            <Board imageObj={config.images[this.state.level]} onComplete={this.onLevelDone} />
             <Stats />
         </div>;
     }

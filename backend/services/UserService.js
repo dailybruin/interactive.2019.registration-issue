@@ -1,5 +1,13 @@
 const { User } = require("../models");
 
+exports.getUsers = async function () {
+    try {
+        return await User.find();
+    } catch (err) {
+        throw err;
+    }
+}
+
 exports.getUser = async function (username) {
     try {
         return await User.findOne({ username });

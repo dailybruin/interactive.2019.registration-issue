@@ -3,7 +3,7 @@ import { css } from "emotion";
 import { mobile, notMobile } from "../../Shared/mediaQueries";
 import Tallies from "./Tallies";
 
-export default class Scoreboard extends React.PureComponent<{}, {}> {
+export default class Scoreboard extends React.Component<{}, {}> {
     render() {
         return (
             <div className={css`

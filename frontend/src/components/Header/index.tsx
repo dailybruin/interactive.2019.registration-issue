@@ -4,7 +4,7 @@ import dbsvg from "../../images/db.svg";
 import titlesvg from "../../images/title.svg";
 import { mobile, notMobile } from '../Shared/mediaQueries';
 
-export default class Header extends React.PureComponent<{}, {}> {
+export default class Header extends React.Component<{}, {}> {
     render() {
         return (<div className={css`
             display: flex;

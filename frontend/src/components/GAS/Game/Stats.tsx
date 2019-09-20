@@ -3,7 +3,7 @@ import { css } from "emotion";
 import GameStatsBox from "../../Shared/GameStatsBox";
 import { mobile } from "../../Shared/mediaQueries";
 
-export default class Stats extends React.PureComponent<{
+export default class Stats extends React.Component<{
     moves: string;
     time: string;
     score: string;

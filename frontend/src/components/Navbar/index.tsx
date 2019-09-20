@@ -7,7 +7,7 @@ import rip from '../../images/rip.png'
 
 const MOBILEBREAKPOINT = 800
 
-class Navbar extends React.PureComponent<{ sections: string[]; }, {}> {
+class Navbar extends React.Component<{ sections: string[]; }, {}> {
   constructor(props) {
     super(props)
   }

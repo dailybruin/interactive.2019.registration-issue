@@ -1,5 +1,5 @@
 export default {
-    "images": [
+    images: [
         {
             "url": "https://embarkvet.com/wp-content/uploads/2019/07/research-dog.png"
         },

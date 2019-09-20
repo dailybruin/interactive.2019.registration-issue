@@ -6,7 +6,28 @@ function distance(x1, y1, x2, y2) {
     return Math.abs(x1 - x2) + Math.abs(y1 - y2);
 }
 
-class Board extends React.PureComponent<BoardProps, BoardState> {
+const initialState = {
+    image: null,
+    clicked: {
+        x: 0,
+        y: 0
+    },
+    empty: {
+        x: 0,
+        y: 0
+    },
+    scaling: {
+        width: 0,
+        height: 0
+    },
+    solved: false,
+    tileSize: 0,
+    board: {},
+    numVertTiles: 0,
+    numHorTiles: 0
+}
+
+class Board extends React.Component<BoardProps, BoardState> {
     canvas: React.RefObject<HTMLCanvasElement>;
     constructor(props) {
         super(props);
@@ -16,32 +37,30 @@ class Board extends React.PureComponent<BoardProps, BoardState> {
         this.loadedImage = this.loadedImage.bind(this);
     }
 
-    state: BoardState = {
-        image: null,
-        clicked: {
-            x: 0,
-            y: 0
-        },
-        empty: {
-            x: 0,
-            y: 0
-        },
-        scaling: {
-            width: 0,
-            height: 0
-        },
-        solved: false,
-        tileSize: 0,
-        board: {},
-        numVertTiles: 0,
-        numHorTiles: 0
-    }
+    state: BoardState = initialState;
 
     componentDidMount() {
+        console.log("Board componentDidMount")
         this.canvas.current.height = this.canvas.current.width;
         const image = new Image();
         image.addEventListener("load", e => this.loadedImage(e, image), false);
-        image.src = this.props.image.url;
+        image.src = this.props.imageObj.url;
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { imageObj } = this.props;
+        const { width, height } = this.canvas.current;
+        if (nextProps.imageObj.url !== imageObj.url) {
+            const context = this.canvas.current.getContext("2d");
+            context.clearRect(0, 0, width, height);
+            this.canvas.current.height = this.canvas.current.width;
+
+            this.setState(initialState, () => {
+                const image = new Image();
+                image.addEventListener("load", e => this.loadedImage(e, image), false);
+                image.src = nextProps.imageObj.url;
+            });
+        }
     }
 
     loadedImage(e, image) {
@@ -54,7 +73,7 @@ class Board extends React.PureComponent<BoardProps, BoardState> {
         // We take the smallest dimension and divide it by the minimum number
         // of tiles we want
         const tileSize = smallestSide / MIN_NUM_TILES;
-
+        console.log("tile size is " + tileSize)
         const numVertTiles = Math.floor(imageHeight / tileSize);
         const numHorTiles = Math.floor(imageWidth / tileSize);
 

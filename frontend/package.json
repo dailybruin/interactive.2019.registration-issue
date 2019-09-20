@@ -18,7 +18,8 @@
   "dependencies": {
     "@dailybruin/gatsby-source-kerckhoff": "1.1.1",
     "@dailybruin/lux": "1.9.3",
-    "@types/react": "16.7.18",
+    "@types/react": "16.9.2",
+    "@types/react-dom": "16.9.0",
     "emotion": "9.2.12",
     "emotion-server": "9.2.12",
     "gatsby": "2.0.89",
@@ -34,6 +35,7 @@
     "react-dom": "16.7.0",
     "react-emotion": "9.2.12",
     "react-helmet": "5.2.0",
+    "react-modal": "3.10.1",
     "react-typography": "0.16.18",
     "slugify": "1.3.4",
     "typography": "0.16.18"

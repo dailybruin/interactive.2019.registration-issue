@@ -1,46 +1,53 @@
 import * as React from "react";
+import { BoardProps, BoardState } from "../../../types";
 const MIN_NUM_TILES = 3;
 
 function distance(x1, y1, x2, y2) {
     return Math.abs(x1 - x2) + Math.abs(y1 - y2);
 }
 
-class Game extends React.PureComponent {
+class Board extends React.PureComponent<BoardProps, BoardState> {
+    canvas: React.RefObject<HTMLCanvasElement>;
     constructor(props) {
         super(props);
-        this.state = {
-            clicked: {
-                x: 0,
-                y: 0
-            },
-            empty: {
-                x: 0,
-                y: 0
-            },
-            solved: false,
-            tileSize: 0,
-            board: {},
-            numVertTiles: 0,
-            numHorTiles: 0
-        }
         this.canvas = React.createRef();
         this.drawTiles = this.drawTiles.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.loadedImage = this.loadedImage.bind(this);
     }
 
+    state: BoardState = {
+        image: null,
+        clicked: {
+            x: 0,
+            y: 0
+        },
+        empty: {
+            x: 0,
+            y: 0
+        },
+        scaling: {
+            width: 0,
+            height: 0
+        },
+        solved: false,
+        tileSize: 0,
+        board: {},
+        numVertTiles: 0,
+        numHorTiles: 0
+    }
+
     componentDidMount() {
         const image = new Image();
         image.addEventListener("load", e => this.loadedImage(e, image), false);
-        image.src = "https://boygeniusreport.files.wordpress.com/2016/11/puppy-dog.jpg";
+        image.src = this.props.image.url;
     }
 
     loadedImage(e, image) {
-
-
         // The natural sizes of the image
-        const imageWidth =  e.target.width;
+        const imageWidth = e.target.width;
         const imageHeight = e.target.height;
+        console.log("image width: " + imageWidth + ". image height: " + imageHeight)
 
         const smallestSide = imageHeight < imageWidth ? imageHeight : imageWidth;
         // We take the smallest dimension and divide it by the minimum number
@@ -62,12 +69,13 @@ class Game extends React.PureComponent {
         const empty = { x: 0, y: 0 };
         empty.x = board[numHorTiles - 1][numVertTiles - 1].x;
         empty.y = board[numHorTiles - 1][numVertTiles - 1].y;
-
-
+        console.log("this.canvas.current.width: " + this.canvas.current.width + ". this.canvas.current.height: " + this.canvas.current.height)
         const scaleWidth = this.canvas.current.width / imageWidth;
         const scaleHeight = this.canvas.current.height / imageHeight;
+        console.log("scale width is " + scaleWidth)
+        console.log("scale height is " + scaleHeight)
         const context = this.canvas.current.getContext("2d");
-        context.scale(scaleWidth, scaleHeight)
+        context.scale(scaleWidth, scaleHeight);
 
         this.setState({
             image,
@@ -78,8 +86,8 @@ class Game extends React.PureComponent {
             board,
             solved: false,
             scaling: {
-              width: scaleWidth,
-              height: scaleHeight
+                width: scaleWidth,
+                height: scaleHeight
             }
         }, this.drawTiles)
     }
@@ -94,15 +102,15 @@ class Game extends React.PureComponent {
                 let y = board[i][j].y;
 
                 if ((i != empty.x || j != empty.y) || solved == true) {
-                  console.log("i" + i + "j" + j);
+                    console.log("i" + i + "j" + j);
                     context.drawImage(image, x * tileSize, y * tileSize, tileSize, tileSize,
                         i * tileSize, j * tileSize, tileSize, tileSize);
 
                 } else {
-                  context.beginPath();
-                  context.fillRect(i * tileSize, j * tileSize, tileSize, tileSize);
-                  context.fill();
-                  context.stroke();
+                    context.beginPath();
+                    context.fillRect(i * tileSize, j * tileSize, tileSize, tileSize);
+                    context.fill();
+                    context.stroke();
                 }
             }
         }
@@ -112,8 +120,8 @@ class Game extends React.PureComponent {
         const canvas = this.canvas.current;
         const { tileSize, scaling, board, numHorTiles, numVertTiles, empty: { x: ex, y: ey } } = this.state;
 
-        const x = Math.floor((e.pageX - canvas.offsetLeft) / tileSize /scaling.width);
-        const y = Math.floor((e.pageY - canvas.offsetTop) / tileSize / scaling.height );
+        const x = Math.floor((e.pageX - canvas.offsetLeft) / tileSize / scaling.width);
+        const y = Math.floor((e.pageY - canvas.offsetTop) / tileSize / scaling.height);
 
 
         if (distance(x, y, ex, ey) == 1) {
@@ -134,7 +142,7 @@ class Game extends React.PureComponent {
             }
 
             this.setState({
-                click: {
+                clicked: {
                     x,
                     y
                 },
@@ -149,8 +157,8 @@ class Game extends React.PureComponent {
     }
 
     render() {
-        return <canvas width={700} height={500} ref={this.canvas} onClick={this.handleClick} />;
+        return <canvas width="auto" height="auto" ref={this.canvas} onClick={this.handleClick} />;
     }
 }
 
-export default Game;
+export default Board;

@@ -19,20 +19,6 @@ export const query = graphql`
         url
       }
     }
-    allGoogleSheetRow {
-      edges {
-        node {
-          section
-          iscolumn
-          headline
-          byline
-          imageurl
-          imagecredits
-          imagedescription
-          link
-        }
-      }
-    }
   }
 `
 

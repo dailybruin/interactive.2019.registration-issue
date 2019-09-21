@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { getUsers, getUser, updateScore } = require("../services/UserService");
+const banned = require("../banned.json");
 const SCORE_INC = 10;
 
 router.get("/api/me", async (req, res, next) => {
@@ -35,11 +36,16 @@ router.post("/api/user", async (req, res, next) => {
             res.status(409).end();
             return next();
         } else {
-            user = await updateScore(username, 0);
-            console.log("User", user)
-            req.session.user = user;
-            res.json(user);
-            return next();
+            if (banned[username]) {
+                res.status(403).end();
+                return next();
+            } else {
+                user = await updateScore(username, 0);
+                console.log("User", user)
+                req.session.user = user;
+                res.json(user);
+                return next();
+            }
         }
     }
 });
@@ -64,7 +70,7 @@ router.get("/api/score", async (req, res, next) => {
 
 router.post("/api/score", async (req, res, next) => {
     console.log("Inside api/user")
-    const { username } = req.session.passport.user;
+    const { username } = req.session.user;
     console.log("Username", username)
     if (username) {
         let user;

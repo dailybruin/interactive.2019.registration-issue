@@ -4,13 +4,22 @@ import { mobile, notMobile } from "../../Shared/mediaQueries";
 import { api } from "../../../utils";
 import colors from "../../Shared/colors";
 
+function sorter(a, b) {
+    return a.score < b.score ? 1 : a.score > b.score ? -1 : 0;
+}
+
+function noZeroes(x) {
+    return x.score > 0;
+}
+
 export default class Tallies extends React.Component<{}, { scores: { username: string; score: number; }[] }> {
     state = {
         scores: []
     };
 
     componentDidMount() {
-        api.scores().then(res => res.status === 200 ? res.json() : undefined).then(scores => {
+        api.scores().then(res => res.status === 200 ? res.json() : undefined).then(res => {
+            const scores = res.filter(noZeroes).sort(sorter);
             this.setState({
                 scores
             })

@@ -64,13 +64,14 @@ const IndexPage = ({ data }) => (
       <p className={css`
         width: 80%;
         font-weight: bold;
+        text-align: center;
         
         ${notMobile} {
           margin-top: 4.5em;
         }
 
         ${mobile} {
-          margin-top: 1em;
+          margin-top: 3em;
         }
       `}>{config.explainer}</p>
       <Game />

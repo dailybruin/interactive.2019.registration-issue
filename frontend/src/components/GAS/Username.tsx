@@ -2,6 +2,7 @@ import * as React from "react";
 import { css } from "emotion";
 import { UsernameProps, UsernameState } from "../../types";
 import { api } from "../../utils";
+import colors from "../Shared/colors";
 
 class Username extends React.Component<UsernameProps, UsernameState> {
     constructor(props) {
@@ -12,13 +13,13 @@ class Username extends React.Component<UsernameProps, UsernameState> {
 
     state: UsernameState = {
         username: "",
-        taken: false
+        taken: false,
+        banned: false
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log("HANDLE SUBMIT")
-        api.setUsername(this.state.username).then(res => res.status === 200 ? this.props.onSubmit() : this.setState({ taken: true }));
+        api.setUsername(this.state.username).then(res => res.status === 200 ? this.props.onSubmit() : res.status === 403 ? this.setState({ banned: true }) : this.setState({ taken: true }));
     }
 
     increaseScore(e) {
@@ -28,12 +29,13 @@ class Username extends React.Component<UsernameProps, UsernameState> {
 
     render() {
         return <div className={css`
-            background-color: blue;
+            background-color: ${colors.cleargray};
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 10px;
             flex-direction: column;
+            text-align: center;
         `}><form className={css`
             margin: 0;
             padding: 0;
@@ -44,7 +46,8 @@ class Username extends React.Component<UsernameProps, UsernameState> {
                 <label htmlFor="username_form">Username</label>
                 <input name="username_form" type="text" onChange={e => this.setState({ username: e.target.value })} value={this.state.username} />
             </form>
-            {this.state.taken ? <p>Username taken!</p> : null}
+            {this.state.banned ? <p className={css`color: ${colors.red}`}>That username contains banned words!</p> : null}
+            {this.state.taken ? <p className={css`color: ${colors.red}`}>Username taken!</p> : null}
         </div>
     }
 }

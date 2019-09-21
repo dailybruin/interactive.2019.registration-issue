@@ -12,6 +12,8 @@ export default function ArticleCard({ article }) {
         >
             <a
                 href={article.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={css`
                     color: gray;
                     text-decoration: none;

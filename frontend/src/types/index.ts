@@ -2,7 +2,10 @@ export interface GameProps { };
 export interface GameState {
     verified: boolean;
     level: number;
-    complete: boolean
+    complete: boolean;
+    moves: number;
+    time: number;
+    score: number;
 };
 
 export interface BoardProps {
@@ -10,6 +13,7 @@ export interface BoardProps {
         url: string;
     };
     onComplete: () => void;
+    incMoves: () => void;
 };
 export interface BoardState {
     clicked: {
@@ -38,6 +42,7 @@ export interface UsernameProps {
 export interface UsernameState {
     username: string;
     taken: boolean;
+    banned: boolean;
 }
 
 export interface GameStatsProps {

@@ -67,13 +67,11 @@ class Board extends React.Component<BoardProps, BoardState> {
         // The natural sizes of the image
         const imageWidth = e.target.width;
         const imageHeight = e.target.height;
-        console.log("image width: " + imageWidth + ". image height: " + imageHeight)
 
         const smallestSide = imageHeight < imageWidth ? imageHeight : imageWidth;
         // We take the smallest dimension and divide it by the minimum number
         // of tiles we want
         const tileSize = smallestSide / MIN_NUM_TILES;
-        console.log("tile size is " + tileSize)
         const numVertTiles = Math.floor(imageHeight / tileSize);
         const numHorTiles = Math.floor(imageWidth / tileSize);
 
@@ -89,11 +87,9 @@ class Board extends React.Component<BoardProps, BoardState> {
         const empty = { x: 0, y: 0 };
         empty.x = board[numHorTiles - 1][numVertTiles - 1].x;
         empty.y = board[numHorTiles - 1][numVertTiles - 1].y;
-        console.log("this.canvas.current.width: " + this.canvas.current.width + ". this.canvas.current.height: " + this.canvas.current.height)
+
         const scaleWidth = this.canvas.current.width / imageWidth;
         const scaleHeight = this.canvas.current.height / imageHeight;
-        console.log("scale width is " + scaleWidth)
-        console.log("scale height is " + scaleHeight)
         const context = this.canvas.current.getContext("2d");
         context.scale(scaleWidth, scaleHeight);
 
@@ -122,7 +118,6 @@ class Board extends React.Component<BoardProps, BoardState> {
                 let y = board[i][j].y;
 
                 if ((i != empty.x || j != empty.y) || solved == true) {
-                    console.log("i" + i + "j" + j);
                     context.drawImage(image, x * tileSize, y * tileSize, tileSize, tileSize,
                         i * tileSize, j * tileSize, tileSize, tileSize);
                 } else if (!solved) {
@@ -145,17 +140,14 @@ class Board extends React.Component<BoardProps, BoardState> {
         if (solved) {
             return;
         }
-        console.log(`e.pagex is ${e.pageX} and canvas.offsetleft is ${canvas.getBoundingClientRect().x}`)
-        const cx = e.pageX - canvas.getBoundingClientRect().x;
-        const cy = e.pageY - canvas.getBoundingClientRect().y;
+
+        const cx = e.pageX - window.scrollX - canvas.getBoundingClientRect().x;
+        const cy = e.pageY - window.scrollY - canvas.getBoundingClientRect().y;
         const x = Math.floor(cx / tileSize / scaling.width);
         const y = Math.floor(cy / tileSize / scaling.height);
-        console.log("handle click!")
-        console.log(`x is ${x}. y is ${y}.`)
-        console.log(`ex is ${ex}. ey is ${ey}`)
-        console.log("distance is " + distance(x, y, ex, ey))
 
         if (distance(x, y, ex, ey) == 1) {
+            this.props.incMoves();
             board[ex][ey].x = board[x][y].x;
             board[ex][ey].y = board[x][y].y;
             board[x][y].x = numHorTiles - 1;
@@ -171,7 +163,7 @@ class Board extends React.Component<BoardProps, BoardState> {
                     }
                 }
             }
-            console.log("solved: " + flag)
+
             this.setState({
                 clicked: {
                     x,

@@ -18,11 +18,13 @@ export default class Tallies extends React.Component {
     };
 
     componentDidMount() {
-        api.scores().then(res => res.status === 200 ? res.json() : undefined).then(res => {
-            const scores = res.filter(noZeroes).sort(sorter);
-            this.setState({
-                scores
-            })
+        api.scores().then(res => res && res.status === 200 ? res.json() : undefined).then(res => {
+            if (res) {
+                const scores = res.filter(noZeroes).sort(sorter);
+                this.setState({
+                    scores
+                })
+            }
         })
     };
 

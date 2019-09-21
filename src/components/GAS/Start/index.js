@@ -12,7 +12,7 @@ class StartScreen extends React.Component {
     }
 
     componentDidMount() {
-        api.getMe().then(res => res.status === 200 ? res.json() : undefined).then(res => this.setState({
+        api.getMe().then(res => res && res.status === 200 ? res.json() : undefined).then(res => this.setState({
             verified: res ? true : false
         }));
     }

@@ -1,47 +1,45 @@
-import React from 'react'
-import { css } from 'emotion'
-import menu from './menu.svg'
-import close from './close.svg'
-
-const MOBILEBREAKPOINT = 800
+import React from "react";
+import { css } from "emotion";
+import menu from "./menu.svg";
+import close from "./close.svg";
 
 class Header__MobileMenu extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      isExpanded: false,
-    }
-    this.toggleMenu = this.toggleMenu.bind(this)
-    this.setStatee = this.setStatee.bind(this);
+      isExpanded: false
+    };
+    this.toggleMenu = this.toggleMenu.bind(this);
+    this.setState = this.setState.bind(this);
   }
 
-  setStatee() {
+  setState() {
     if (typeof document == `undefined`) {
       return;
     }
 
-    var offset = document.getElementById('Header__MobileMenuList').offsetWidth
-    document.getElementById('Header__MobileMenu').style.left = this.state
+    var offset = document.getElementById("Header__MobileMenuList").offsetWidth;
+    document.getElementById("Header__MobileMenu").style.left = this.state
       .isExpanded
-      ? '0'
-      : `-${offset}px`
-    document.getElementById('Header__MenuIcon').style.display = this.state
+      ? "0"
+      : `-${offset}px`;
+    document.getElementById("Header__MenuIcon").style.display = this.state
       .isExpanded
-      ? 'none'
-      : `block`
-    document.getElementById('Header__CloseIcon').style.display = this.state
+      ? "none"
+      : `block`;
+    document.getElementById("Header__CloseIcon").style.display = this.state
       .isExpanded
-      ? 'block'
-      : `none`
+      ? "block"
+      : `none`;
   }
 
   componentDidMount() {
-    this.setStatee()
+    this.setState();
   }
 
   toggleMenu() {
-    this.state.isExpanded = !this.state.isExpanded
-    this.setStatee()
+    this.state.isExpanded = !this.state.isExpanded;
+    this.setState();
   }
 
   render() {
@@ -50,7 +48,7 @@ class Header__MobileMenu extends React.Component {
         id="Header__MobileMenu"
         className={css`
           position: fixed;
-          top: 140px;
+          top: 120px;
           z-index: 10;
           transition: left 200ms;
         `}
@@ -58,7 +56,7 @@ class Header__MobileMenu extends React.Component {
         <nav
           id="Header__MobileMenuList"
           className={css`
-            padding: 10px;
+            padding: 0 5px 10px;
             text-align: center;
             display: inline-block;
             background-color: #ddd;
@@ -66,11 +64,10 @@ class Header__MobileMenu extends React.Component {
 
             a {
               display: block;
-              font-family: 'Lato', serif;
+              font-family: "Lato", serif;
               font-style: normal;
               font-weight: normal;
-              font-size: 22px;
-              line-height: 26px;
+              font-size: 1.125em;
               text-align: center;
 
               color: #363636;
@@ -79,11 +76,14 @@ class Header__MobileMenu extends React.Component {
               margin: 10px;
               border-bottom: 1px solid #000;
               padding: 2px 0 8px;
+              text-transform: uppercase;
             }
           `}
         >
           {this.props.sections.map(section => (
-            <a key={section} href={`#${section}`}>{section}</a>
+            <a key={section} href={`#${section}`}>
+              {section}
+            </a>
           ))}
         </nav>
         <div
@@ -103,12 +103,12 @@ class Header__MobileMenu extends React.Component {
             }
           `}
         >
-          <img id="Header__MenuIcon" src={menu} />
-          <img id="Header__CloseIcon" src={close} />
+          <img id="Header__MenuIcon" alt="=" src={menu} />
+          <img id="Header__CloseIcon" alt="X" src={close} />
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Header__MobileMenu
+export default Header__MobileMenu;

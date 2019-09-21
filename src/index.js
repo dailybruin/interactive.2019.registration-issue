@@ -3,4 +3,30 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// Cookie Utilities
+function setVisitedCookie() {
+    var date = new Date();
+    date.setTime(date.getTime() + 2 * 24 * 60 * 60 * 1000);
+    var expires = "expires=" + date.toUTCString();
+    document.cookie = "visited=true;" + expires + ";path=/";
+}
+
+function checkVistiedCookie() {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+        if (cookies[i].trim() === "visited=true") {
+            return true;
+        }
+    }
+    return false;
+}
+
+if (document != null) {
+    const visited = checkVistiedCookie();
+    if (!visited) {
+        setVisitedCookie();
+    }
+
+    ReactDOM.render(<App visited={visited}/>, document.getElementById('root'));
+
+}

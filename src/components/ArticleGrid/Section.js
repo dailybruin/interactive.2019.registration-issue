@@ -42,6 +42,7 @@ export class Section extends React.Component {
                     text-align: center;
                 `}
             >
+                <a name={this.props.data.section}/>
                 <h2
                     className={css`
                         font-size: 4rem;

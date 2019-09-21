@@ -14,7 +14,7 @@ export default class LandingPage extends React.Component {
           height: 100%;
           top: 0;
           animation-name: fade-out;
-          animation-delay: 2s;
+          animation-delay: 6s;
           animation-duration: 800ms;
           animation-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
           animation-fill-mode: forwards;

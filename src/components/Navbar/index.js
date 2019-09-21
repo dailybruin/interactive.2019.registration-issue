@@ -1,52 +1,48 @@
-import React from 'react'
-import { css } from 'emotion'
+import React from "react";
+import { css } from "emotion";
 
-import MobileMenu from './MobileMenu'
+import MobileMenu from "./MobileMenu";
 
-import rip from '../../images/rip.png'
+import rip from "./rip.png";
 
-const MOBILEBREAKPOINT = 800
+import { mobile, notMobile } from '../Shared/mediaQueries';
+
 
 class Navbar extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <div
         className={css`
-          min-height: 200px;
+          height: 100px;
           width: 100%;
           position: sticky;
           background-image: url(${rip});
-          background-position: center bottom;
+          background-position: center top;
           background-repeat: no-repeat;
-          background-size: cover;
-          top: 100vh;
+          background-size: auto;
+          top: 0;
+          z-index: 101;
         `}
       >
         <div
           className={css`
-            padding: 14px;
             display: flex;
             justify-content: space-between;
-            @media (max-width: ${MOBILEBREAKPOINT}px) {
+            ${mobile} {
               justify-content: center;
             }
           `}
         >
           <h1
             className={css`
-              margin: 0 10px;
+              margin: 0 10px 0 20px;
               white-space: nowrap;
               text-align: center;
 
-              font-family: Source Sans Pro;
+              font-family: Source Sans Pro, sans-serif;
               font-style: normal;
               font-weight: bold;
-              font-size: 40px;
-              line-height: 50px;
+              font-size: 2.5em;
               text-align: center;
               letter-spacing: 0.01em;
               color: #ffffff;
@@ -59,25 +55,28 @@ class Navbar extends React.Component {
           </h1>
           <nav
             className={css`
-              @media (max-width: ${MOBILEBREAKPOINT}px) {
+              ${mobile} {
                 display: none;
               }
+              box-sizing: border-box;
               padding: 20px 10px;
               text-align: center;
+              max-height: 1.125em;
+              overflow: hidden;
 
               a {
                 display: inline-block;
-                font-family: 'Lato', serif;
+                font-family: "Lato", serif;
                 font-style: normal;
                 font-weight: normal;
-                font-size: 22px;
-                line-height: 26px;
+                font-size: 1.125em;
                 text-align: center;
 
                 color: #363636;
                 text-decoration: none;
                 font-weight: bold;
                 padding: 0 0.5em;
+                text-transform: uppercase;
               }
 
               a:hover {
@@ -86,14 +85,25 @@ class Navbar extends React.Component {
             `}
           >
             {this.props.sections.map(section => (
-              <a key={section} href={`#${section}`}>{section}</a>
+              <a key={section} href={`#${section}`}>
+                {section}
+              </a>
             ))}
           </nav>
         </div>
-        <MobileMenu sections={this.props.sections} />
+        <div
+          className={css`
+            ${mobile} {
+              display: block;
+            }
+            display: none;
+          `}
+        >
+          <MobileMenu sections={this.props.sections} />
+        </div>
       </div>
-    )
+    );
   }
 }
 
-export default Navbar
+export default Navbar;

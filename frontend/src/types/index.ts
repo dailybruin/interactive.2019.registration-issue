@@ -42,5 +42,5 @@ export interface UsernameState {
 
 export interface GameStatsProps {
     title: string;
-    body: string;
+    body: string | number;
 }

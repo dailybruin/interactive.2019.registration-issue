@@ -6,12 +6,16 @@ import { mobile, notMobile } from "../Shared/mediaQueries";
 
 const Box = ({ children }) => (
     <div className={css`
-    padding: 1em;
-    background-color: #F4F4F4;
-    ${mobile} {
-        width: 90%;
-    }
-  `}>
+        padding: 1em;
+        background-color: #F4F4F4;
+        border-radius: 4%;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+
+        ${mobile} {
+            width: 90%;
+        }
+    `}>
         {children}
     </div>
 );
@@ -21,12 +25,10 @@ export default class GameAndScoreboard extends React.Component<{}, {}> {
         return (
             <div className={css`
                 display: flex;
-                width: 100%;
-                flex-flow: row wrap;
-                
                 ${mobile} {
+                    text-align: center;
                     flex-direction: column;
-                    justify-content: flex-start;
+                    justify-content: center;
                     align-items: center;
                 }
 
@@ -34,6 +36,7 @@ export default class GameAndScoreboard extends React.Component<{}, {}> {
                     flex-direction: row;
                     justify-content: space-around;
                     width: 90%;
+                    flex-flow: row wrap;
                 }
             `}>
                 <Box><StartScreen /></Box>

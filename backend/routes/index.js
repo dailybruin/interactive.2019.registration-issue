@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { getUsers, getUser, updateScore } = require("../services/UserService");
+const SCORE_INC = 10;
 
 router.get("/api/me", async (req, res, next) => {
     console.log("Inside api/me")
@@ -77,7 +78,7 @@ router.post("/api/score", async (req, res, next) => {
         const { score } = user;
 
         try {
-            const newu = await updateScore(username, score + 10);
+            const newu = await updateScore(username, score + SCORE_INC);
             console.log(newu)
             req.session.user = newu;
             res.json(newu);

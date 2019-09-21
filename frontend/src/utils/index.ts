@@ -31,5 +31,6 @@ export const api = {
     getMe: () => get("/api/me"),
     setUsername: username => post("/api/user", { username }),
     score: () => post("/api/score", {}),
-    scores: () => get("/api/score")
+    scores: () => get("/api/score"),
+    getData: () => fetch("https://kerckhoff.dailybruin.com/api/packages/flatpages/interactive.2019.regissue/")
 }

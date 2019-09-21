@@ -19,9 +19,13 @@ export default class GameStatsBox extends React.Component<GameStatsProps, {}> {
                 </div>
                 <div style={{
                     backgroundColor: "white",
-                    flex: "1"
+                    flex: "1",
+                    fontSize: "1.2em",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center"
                 }}>
-                    {this.props.body}
+                    {this.props.body || "0"}
                 </div>
             </div>
         )

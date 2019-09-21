@@ -14,6 +14,8 @@ import { css } from 'emotion';
 import rip from "../images/rip.png";
 import { notMobile, mobile } from '../components/Shared/mediaQueries';
 import Navbar from '../components/Navbar';
+import { ArticleGrid } from '../components/ArticleGrid';
+import config from '../config';
 
 export const query = graphql`
   query {
@@ -33,9 +35,6 @@ const IndexPage = ({ data }) => (
     background-image: url(${rip});
     background-repeat: no-repeat;
     height: 200vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
     ${notMobile} {
       background-size: 100vw 100vh;
@@ -47,30 +46,46 @@ const IndexPage = ({ data }) => (
     }
   `}>
     <Head {...data.site.siteMetadata} />
-    <Header />
-    <p className={css`
-      width: 80%;
-      font-weight: bold;
+    <div className={css`
+      ${mobile} {
+        min-height: 100vh;
+      }
 
       ${notMobile} {
-        margin-top: 5em;
+        height: 100vh;
       }
-      
-      ${mobile} {
-        margin-top: 3.5em;
-      }
-    `}>explainer for the interactive and game here! explainer for the interactive and game here! explainer for the interactive and game here! explainer for the interactive and game here! explainer for the interactive and game here! explainer for the interactive and game here! explainer for the interactive and game here!</p>
-    <Game />
-    <Navbar sections={[
+
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    `}>
+      <Header />
+      <p className={css`
+        width: 80%;
+        font-weight: bold;
+        
+        ${notMobile} {
+          margin-top: 4.5em;
+        }
+
+        ${mobile} {
+          margin-top: 1em;
+        }
+      `}>{config.explainer}</p>
+      <Game />
+    </div>
+    {/* <Navbar sections={[
       'NEWS',
       'OPINION',
       'ARTS',
       'SPORTS',
       'PRIME',
       'PHOTO'
-    ]} />
-    <Footer developers="Dustin Newman" copyrightYear={2019} />
-  </div>
+    ]} /> */}
+    <ArticleGrid />
+    <Footer developers="Dustin Newman, Thomas Gerard, Neil Prajapati" copyrightYear={2019} />
+  </div >
 )
 
 export default IndexPage

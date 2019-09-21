@@ -8,7 +8,7 @@ export default class LandingPage extends React.Component {
       <div
         className={css`
           display: block;
-          position: absolute;
+          position: fixed;
           z-index: 1001;
           width: 100%;
           height: 100%;

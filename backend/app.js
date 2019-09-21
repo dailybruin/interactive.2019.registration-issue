@@ -2,6 +2,7 @@
 // This does NOT start the server
 // That happens in ./index.js
 const app = require("express")();
+const cors = require("cors");
 // The body parser module gives us access to a JSON
 // parsed req.body object
 const bodyParser = require("body-parser");
@@ -10,8 +11,23 @@ const bodyParser = require("body-parser");
 const sessions = require("./sessions");
 const router = require("./routes");
 
+const whitelist = [
+    "https://features.dailybruin.com",
+];
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    optionsSuccessStatus: 200
+};
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors(corsOptions));
 app.use(sessions);
 app.use(router);
 

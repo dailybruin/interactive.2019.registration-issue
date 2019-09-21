@@ -5,8 +5,7 @@ import MobileMenu from "./MobileMenu";
 
 import rip from "./rip.png";
 
-import { mobile, notMobile } from '../Shared/mediaQueries';
-
+import { mobile, notMobile } from "../Shared/mediaQueries";
 
 class Navbar extends React.Component {
   render() {
@@ -49,6 +48,11 @@ class Navbar extends React.Component {
               -webkit-text-fill-color: #ffffff;
               -webkit-text-stroke-width: 1px;
               -webkit-text-stroke-color: #000000;
+
+              @media only screen and (max-width: 350px) {
+                font-size: 2em;
+                margin-top: 0.5em;
+              }
             `}
           >
             registration issue
@@ -81,6 +85,7 @@ class Navbar extends React.Component {
 
               a:hover {
                 text-decoration: underline;
+                color: #D16259;
               }
             `}
           >

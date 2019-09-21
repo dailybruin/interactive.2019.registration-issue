@@ -39,8 +39,13 @@ export default class Header extends React.Component {
                     min-width: 300px;
                 }
                 ${mobile} {
-                    max-width: 100%;
+                    max-width: 90%;
                 }
+                color: #ffffff;
+                font-family: 'Source Sans Pro', sans-serif
+                -webkit-text-fill-color: #d16258;
+                -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: #000000;
             `} src={titlesvg} alt="Registration Issue" />
             <h2 className={css`
                 letter-spacing: 0.2em;

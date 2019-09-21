@@ -14,30 +14,20 @@ export default class IndexPage extends React.Component {
     return (
       <>
         {this.props.visited || <LandingPage />}
-        <div
-          className={css`
-            background-image: url(${rip});
-            background-repeat: no-repeat;
-            height: 200vh;
-
-            ${notMobile} {
-              background-size: 100vw 100vh;
-            }
-
-            ${mobile} {
-              background-size: 200%;
-              background-position-x: center;
-            }
-          `}
-        >
+        <div>
           <div
             className={css`
-              ${mobile} {
-                min-height: 100vh;
-              }
+              min-height: 100vh;
+              background-image: url(${rip});
+              background-repeat: no-repeat;
 
               ${notMobile} {
-                height: 100vh;
+                background-size: 100vw 100%;
+              }
+
+              ${mobile} {
+                background-size: 200%;
+                background-position-x: center;
               }
 
               width: 100vw;
@@ -65,6 +55,13 @@ export default class IndexPage extends React.Component {
               {config.explainer}
             </p>
             <Game />
+            <div
+              className={css`
+                margin: 20px 0;
+              `}
+            >
+              <broadstreet-zone zone-id="69406"></broadstreet-zone>
+            </div>
           </div>
           <div>
             <Navbar

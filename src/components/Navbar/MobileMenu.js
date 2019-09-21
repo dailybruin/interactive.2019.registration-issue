@@ -77,6 +77,10 @@ class Header__MobileMenu extends React.Component {
               border-bottom: 1px solid #000;
               padding: 2px 0 8px;
               text-transform: uppercase;
+
+              &:hover {
+                color: #D16259;
+              }
             }
           `}
         >

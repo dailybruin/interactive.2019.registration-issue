@@ -51,8 +51,8 @@ export class Section extends React.Component {
                         margin-bottom: 0.4em;
 
                         ${mobile} {
-                            font-size: ${this.props.data.section.length > 10
-                            ? "3rem"
+                            font-size: ${this.props.data.section.length > 7
+                            ? "2.5rem"
                             : "4rem"};
                         }
                     `}

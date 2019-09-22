@@ -23,11 +23,11 @@ const corsOptions = {
             callback(new Error("Not allowed by CORS"));
         }
     },
+    credentials: true,
     optionsSuccessStatus: 200
 };
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors(corsOptions));
 app.use(sessions);
 app.use(router);

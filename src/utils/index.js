@@ -2,11 +2,11 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 function ft(func) {
-    return func.then(({ data, status }) => {
-        console.log('Request success: ', data);
+    return func.then(res => {
+        console.log('Request success: ', res);
         return {
-            data,
-            status
+            data: res.data,
+            status: res.status
         };
     }).catch(function (error) {
         console.log('Request failure: ', error);

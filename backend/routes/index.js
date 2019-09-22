@@ -5,6 +5,7 @@ const SCORE_INC = 10;
 
 router.get("/api/me", async (req, res, next) => {
     console.log("Inside api/me")
+    console.log("REQ.SESSION ID " + req.sessionID)
     if (req.session.user) {
         console.log("Session exists", req.session);
         const { username } = req.session.user;
@@ -27,6 +28,7 @@ router.get("/api/me", async (req, res, next) => {
 
 router.post("/api/user", async (req, res, next) => {
     console.log("Inside api/user")
+    console.log("REQ.SESSION ID " + req.sessionID)
     const { username } = req.body;
     console.log("Username", username)
     if (username) {
@@ -54,6 +56,7 @@ router.post("/api/user", async (req, res, next) => {
 });
 
 router.get("/api/score", async (req, res, next) => {
+    console.log("REQ.SESSION ID " + req.sessionID)
     let users;
     try {
         users = await getUsers();
@@ -73,6 +76,7 @@ router.get("/api/score", async (req, res, next) => {
 
 router.post("/api/score", async (req, res, next) => {
     console.log("Inside api/score");
+    console.log("REQ.SESSION ID " + req.sessionID)
     console.log("req.session: ")
     console.log(req.session)
     const { username } = req.session.user;

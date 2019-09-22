@@ -7,5 +7,8 @@ module.exports = session({
     secret: process.env.SESSION_SECRET,
     // store: new RedisStore({ client }),
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true,
+    cookie: {
+        secure: process.env.NODE_ENV === "production",
+    }
 });;

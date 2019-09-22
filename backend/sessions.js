@@ -5,7 +5,7 @@ const client = redis.createClient(process.env.REDIS_URL || "redis://redis:6379")
 
 module.exports = session({
     secret: process.env.SESSION_SECRET,
-    store: new RedisStore({ client }),
+    // store: new RedisStore({ client }),
     resave: false,
     saveUninitialized: false
 });;

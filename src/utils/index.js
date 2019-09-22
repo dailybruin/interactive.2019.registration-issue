@@ -10,6 +10,13 @@ function ft(func) {
         };
     }).catch(function (error) {
         console.log('Request failure: ', error);
+        if (error.response) {
+            if (error.response.status) {
+                return {
+                    status: error.response
+                }
+            }
+        }
     });
 }
 

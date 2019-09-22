@@ -13,14 +13,13 @@ export class ArticleGrid extends React.Component {
     }
 
     componentWillMount() {
-        api.getData().then(response => response.json())
-            .then(data => {
-                console.log(data);
-                let sections = data.data["data.aml"] ? data.data["data.aml"].sections : []
-                this.setState({
-                    data: sections
-                });
+        api.getData().then(({ data }) => {
+            console.log(data);
+            let sections = data.data["data.aml"] ? data.data["data.aml"].sections : []
+            this.setState({
+                data: sections
             });
+        });
     }
 
     render() {

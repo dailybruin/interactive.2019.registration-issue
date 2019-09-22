@@ -22,7 +22,6 @@ function post(url, body) {
     return ft(fetch(url, {
         method: "POST",
         headers: {
-            'Accept': 'application/json',
             'Access-Control-Allow-Credentials': true,
             'Content-Type': 'application/json'
         },

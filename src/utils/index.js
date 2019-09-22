@@ -13,7 +13,7 @@ function get(url) {
         method: "GET",
         credentials: "include",
         headers: {
-            'Access-Control-Allow-Credentials': true
+            'Access-Control-Allow-Credentials': "true"
         }
     }))
 }
@@ -22,7 +22,7 @@ function post(url, body) {
     return ft(fetch(url, {
         method: "POST",
         headers: {
-            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Credentials': "true",
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(body),

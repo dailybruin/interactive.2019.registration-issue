@@ -31,7 +31,6 @@ router.post("/api/user", async (req, res, next) => {
     console.log("Username", username)
     if (username) {
         let user = await getUser(username);
-        console.log("User", user)
         if (user) {
             res.status(409).end();
             return next();
@@ -41,8 +40,12 @@ router.post("/api/user", async (req, res, next) => {
                 return next();
             } else {
                 user = await updateScore(username, 0);
-                console.log("User", user)
+                console.log("setting req.session.user to:")
+                console.log(user)
                 req.session.user = user;
+                req.session.save();
+                console.log("session after:")
+                console.log(req.session);
                 res.json(user);
                 return next();
             }
@@ -69,7 +72,9 @@ router.get("/api/score", async (req, res, next) => {
 })
 
 router.post("/api/score", async (req, res, next) => {
-    console.log("Inside api/user")
+    console.log("Inside api/score");
+    console.log("req.session: ")
+    console.log(req.session)
     const { username } = req.session.user;
     console.log("Username", username)
     if (username) {
@@ -87,6 +92,7 @@ router.post("/api/score", async (req, res, next) => {
             const newu = await updateScore(username, score + SCORE_INC);
             console.log(newu)
             req.session.user = newu;
+            req.session.save();
             res.json(newu);
             return next();
         } catch (err) {

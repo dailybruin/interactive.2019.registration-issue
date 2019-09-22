@@ -18,12 +18,15 @@ exports.getUser = async function (username) {
 
 exports.updateScore = async function (username, score) {
     try {
-        return await User.findOneAndUpdate({
-            username
-        }, { score }, {
+        const user = await User.findOneAndUpdate({
+            username: username
+        }, { score: score }, {
             new: true,
             upsert: true
         });
+        console.log("update score")
+        console.log(user);
+        return user;
     } catch (err) {
         throw err;
     }

@@ -11,7 +11,7 @@ function setVisitedCookie() {
     document.cookie = "visited=true;" + expires + ";path=/";
 }
 
-function checkVistiedCookie() {
+function checkVisitedCookie() {
     var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++) {
         if (cookies[i].trim() === "visited=true") {
@@ -22,11 +22,11 @@ function checkVistiedCookie() {
 }
 
 if (document != null) {
-    const visited = checkVistiedCookie();
+    const visited = checkVisitedCookie();
     if (!visited) {
         setVisitedCookie();
     }
 
-    ReactDOM.render(<App visited={visited}/>, document.getElementById('root'));
+    ReactDOM.render(<App visited={visited} />, document.getElementById('root'));
 
 }

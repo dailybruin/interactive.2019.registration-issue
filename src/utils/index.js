@@ -11,6 +11,7 @@ function ft(func) {
 function get(url) {
     return ft(fetch(url, {
         method: "GET",
+        credentials: "include"
     }))
 }
 
@@ -21,7 +22,8 @@ function post(url, body) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(body),
+        credentials: "include"
     }))
 }
 

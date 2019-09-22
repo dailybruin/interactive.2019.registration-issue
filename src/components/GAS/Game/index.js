@@ -15,14 +15,12 @@ class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            verified: false,
             level: 0,
             complete: false,
             moves: 0,
             time: 0,
             score: 0
         }
-        this.onSubmitUsername = this.onSubmitUsername.bind(this);
         this.onLevelDone = this.onLevelDone.bind(this);
         this.setTimer = this.setTimer.bind(this);
         this.clearTimer = this.clearTimer.bind(this);
@@ -55,12 +53,6 @@ class Game extends React.Component {
         this.setState(prevState => ({
             moves: prevState.moves + 1
         }))
-    }
-
-    onSubmitUsername() {
-        this.setState({
-            verified: true
-        })
     }
 
     onLevelDone() {

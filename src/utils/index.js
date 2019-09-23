@@ -17,19 +17,19 @@ function ft(func) {
 }
 
 function get(url) {
-    return ft(axios({
-        method: "GET",
-        url,
-        withCredentials: true
+    return ft(fetch(url, {
+        credentials: "include"
     }))
 }
 
 function post(url, body) {
-    return ft(axios({
+    return ft(fetch(url, {
         method: "POST",
-        url,
-        data: body,
-        withCredentials: true
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body),
+        credentials: "include"
     }))
 }
 

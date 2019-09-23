@@ -5,6 +5,7 @@ const app = require("express")();
 app.set("trust proxy", true);
 
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 // The body parser module gives us access to a JSON
 // parsed req.body object
 const bodyParser = require("body-parser");
@@ -29,9 +30,10 @@ const corsOptions = {
     credentials: true,
     optionsSuccessStatus: 200
 };
-
+console.log("SESS SECRET IS " + process.env.SESSION_SECRET)
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
+app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(sessions);
 app.use(router);
 

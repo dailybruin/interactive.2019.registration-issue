@@ -3,9 +3,18 @@ const { getUsers, getUser, updateScore } = require("../services/UserService");
 const banned = require("../banned.json");
 const SCORE_INC = 10;
 
+router.use((req, res, next) => {
+    console.log("inside middleware")
+    res.header('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-Origin', "https://optimistic-goldstine-ffd9f3.netlify.com");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+    next();
+})
+
 router.get("/api/me", async (req, res, next) => {
     console.log("Inside api/me")
-    console.log("REQ.SESSION ID " + req.sessionID)
+    console.log(req.session)
     if (req.session.username) {
         const { username } = req.session;
         try {
@@ -35,9 +44,8 @@ router.post("/api/user", async (req, res, next) => {
                 res.status(403).end();
             } else {
                 user = await updateScore(username, 0);
-                console.log("setting req.session.username to:")
-                console.log(user.username)
-                req.session.username = user.username;
+                req.session.username = username;
+                req.session.views = 1;
                 console.log("session after:")
                 console.log(req.session);
                 res.json(user);
@@ -67,6 +75,7 @@ router.get("/api/score", async (req, res, next) => {
 router.post("/api/score", async (req, res, next) => {
     console.log("Inside POST api/score");
     console.log("REQ.SESSION ID " + req.sessionID)
+    req.session.views++;
     const { username } = req.session;
     console.log("Username", username)
     if (username) {

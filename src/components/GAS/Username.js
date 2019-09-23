@@ -17,7 +17,7 @@ class Username extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        api.setUsername(this.state.username).then(({ data, status }) => status === 200 ? this.props.onSubmit() : status === 403 ? this.setState({ banned: true }) : this.setState({ taken: true }));
+        api.setUsername(this.state.username).then(res => res && res.status === 200 ? this.props.onSubmit() : res && res.status === 403 ? this.setState({ banned: true }) : this.setState({ taken: true }));
     }
 
     increaseScore(e) {

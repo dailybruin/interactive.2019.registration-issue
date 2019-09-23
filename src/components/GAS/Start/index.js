@@ -16,7 +16,7 @@ class StartScreen extends React.Component {
 
     componentDidMount() {
         if (this.state.verified === false) {
-            api.getMe().then(({ data, status }) => status === 200 ? data : undefined).then(res => this.setState({
+            api.getMe().then(res => res && res.status === 200 ? res.json() : undefined).then(res => this.setState({
                 verified: res ? true : false
             }));
         }

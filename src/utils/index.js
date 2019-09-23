@@ -1,36 +1,36 @@
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-function ft(func) {
-    return func.then(res => ({
-        data: res.data,
-        status: res.status
-    })).catch(error => {
-        if (error.response) {
-            if (error.response.status) {
-                return {
-                    status: error.response.status
-                };
-            }
-        }
-    });
-}
+// function ft(func) {
+//     return func.then(res => ({
+//         data: res.data,
+//         status: res.status
+//     })).catch(error => {
+//         if (error.response) {
+//             if (error.response.status) {
+//                 return {
+//                     status: error.response.status
+//                 };
+//             }
+//         }
+//     });
+// }
 
 function get(url) {
-    return ft(fetch(url, {
+    return fetch(url, {
         credentials: "include"
-    }))
+    })
 }
 
 function post(url, body) {
-    return ft(fetch(url, {
+    return fetch(url, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(body),
         credentials: "include"
-    }))
+    })
 }
 
 const API_URL = "https://regissue2019.backend.dailybruin.com/api/"

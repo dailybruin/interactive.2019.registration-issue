@@ -5,7 +5,7 @@ const SCORE_INC = 10;
 
 router.use((req, res, next) => {
     console.log("inside middleware")
-    res.header('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-Credentials', "true");
     res.header('Access-Control-Allow-Origin', "https://optimistic-goldstine-ffd9f3.netlify.com");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');

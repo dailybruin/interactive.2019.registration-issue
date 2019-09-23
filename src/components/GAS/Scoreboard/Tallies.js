@@ -18,7 +18,7 @@ export default class Tallies extends React.Component {
     };
 
     componentDidMount() {
-        api.scores().then(res => res && res.status === 200 ? res.data : undefined).then(res => {
+        api.scores().then(res => res && res.status === 200 ? res.json() : undefined).then(res => {
             if (res) {
                 const scores = res.filter(noZeroes).sort(sorter);
                 this.setState({

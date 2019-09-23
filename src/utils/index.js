@@ -2,13 +2,18 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 function ft(func) {
-    return func.then(function (data) {
-        console.log('Request success: ', data);
-        return data;
-    })
-        .catch(function (error) {
-            console.log('Request failure: ', error);
-        });
+    return func.then(res => ({
+        data: res.data,
+        status: res.status
+    })).catch(error => {
+        if (error.response) {
+            if (error.response.status) {
+                return {
+                    status: error.response.status
+                };
+            }
+        }
+    });
 }
 
 function get(url) {

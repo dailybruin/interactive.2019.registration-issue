@@ -49,7 +49,7 @@ function setUsername(username) {
         } else {
             return "taken";
         }
-    }).catch(e = "taken");
+    }).catch(e => "taken");
 }
 
 function score() {

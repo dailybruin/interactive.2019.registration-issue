@@ -4,6 +4,7 @@ const rateLimit = require("express-rate-limit");
 const { getUsers, getUser, updateScore } = require("../services/UserService");
 const banned = require("../banned.json");
 const SCORE_INC = 10;
+const MIN = 30 * 1000; // 30 seconds
 
 const limiter = rateLimit({
     windowMs: MIN,

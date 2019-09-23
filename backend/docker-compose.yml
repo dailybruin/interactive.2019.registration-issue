@@ -12,11 +12,3 @@ services:
       - ./:/usr/src/backend
     ports:
       - "3000:3000"
-    links:
-      - redis
-    depends_on:
-      - redis
-  redis:
-    image: redis:alpine
-    ports:
-      - "6379:6379"

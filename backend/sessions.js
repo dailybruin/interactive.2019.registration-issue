@@ -7,9 +7,10 @@ module.exports = session({
     store: new MongoStore({
         mongooseConnection: mongoose.connection
     }),
-    resave: false,
-    saveUninitialized: true,
+    // resave: false,
+    // saveUninitialized: true,
     cookie: {
-        secure: process.env.NODE_ENV === "production",
+        // secure: process.env.NODE_ENV === "production",
+        maxAge: 30 * 1000
     }
 });;

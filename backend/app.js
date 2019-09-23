@@ -2,6 +2,8 @@
 // This does NOT start the server
 // That happens in ./index.js
 const app = require("express")();
+app.set("trust proxy", 1);
+
 const cors = require("cors");
 // The body parser module gives us access to a JSON
 // parsed req.body object

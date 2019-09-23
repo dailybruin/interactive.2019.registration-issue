@@ -71,8 +71,7 @@ export default class IndexPage extends React.Component {
                 "Sports",
                 "Arts",
                 "Multimedia",
-                "The Quad",
-                "Prime"
+                "The Quad"
               ]}
             />
             <ArticleGrid />

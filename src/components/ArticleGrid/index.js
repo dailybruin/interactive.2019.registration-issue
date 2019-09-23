@@ -12,7 +12,7 @@ export class ArticleGrid extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         api.getData().then(response => response.json())
             .then(data => {
                 console.log(data);

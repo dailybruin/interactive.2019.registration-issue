@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    env_file: ./.env
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./:/usr/src/backend
+    ports:
+      - "8000:3000"
+    links:
+      - redis
+      - db_mongo
+    depends_on:
+      - redis
+      - db_mongo
+  db_mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"

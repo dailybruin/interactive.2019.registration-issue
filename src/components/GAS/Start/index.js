@@ -8,17 +8,18 @@ import { api } from "../../../utils";
 class StartScreen extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            verified: false,
+        }
         this.onSubmitUsername = this.onSubmitUsername.bind(this);
     }
 
     componentDidMount() {
-        api.getMe().then(res => res && res.status === 200 ? res.json() : undefined).then(res => this.setState({
-            verified: res ? true : false
-        }));
-    }
-
-    state = {
-        verified: false,
+        if (this.state.verified === false) {
+            api.getMe().then(res => res && res.status === 200 ? res.json() : undefined).then(res => this.setState({
+                verified: res ? true : false
+            }));
+        }
     }
 
     onSubmitUsername() {

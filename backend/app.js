@@ -13,7 +13,8 @@ const router = require("./routes");
 
 const whitelist = [
     "https://features.dailybruin.com",
-    "https://optimistic-goldstine-ffd9f3.netlify.com"
+    "https://optimistic-goldstine-ffd9f3.netlify.com",
+    "http://localhost:3000"
 ];
 const corsOptions = {
     origin: function (origin, callback) {

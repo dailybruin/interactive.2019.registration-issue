@@ -17,13 +17,20 @@ function ft(func) {
 }
 
 function get(url) {
-    return ft(axios.get(url, {
+    return ft(axios({
+        method: "GET",
+        url,
         withCredentials: true
     }))
 }
 
 function post(url, body) {
-    return ft(axios.post(url, body))
+    return ft(axios({
+        method: "POST",
+        url,
+        data: body,
+        withCredentials: true
+    }))
 }
 
 const API_URL = "https://regissue2019.backend.dailybruin.com/api/"

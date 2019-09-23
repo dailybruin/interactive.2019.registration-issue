@@ -64,6 +64,7 @@ export default class Tallies extends React.Component {
                         `}>{idx + 1}</div>
                         <span className={css`
                             font-size: 1.2em;
+                            padding: 0em 0.5em;
                         `}>{x.username}</span>
                         <span className={css`
                             font-size: 1.2em;

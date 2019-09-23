@@ -17,7 +17,7 @@ class Navbar extends React.Component {
   }
 
   listenScrollEvent(e) {
-    if (window.scrollY >= window.innerHeight) {
+    if (document.getElementById("__article_grid").getBoundingClientRect().top <= 0) {
       this.setState({ show: true });
     } else {
       this.setState({ show: false });
@@ -39,6 +39,10 @@ class Navbar extends React.Component {
   }
 
   render() {
+    if (!this.state.show) {
+      return null;
+    }
+
     return (
       <div
         className={css`
@@ -51,7 +55,6 @@ class Navbar extends React.Component {
           background-size: auto;
           top: 0;
           z-index: 101;
-          display: ${this.state.show ? "block" : "none"}
         `}
       >
         <div

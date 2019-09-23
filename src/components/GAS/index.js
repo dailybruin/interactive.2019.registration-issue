@@ -41,7 +41,7 @@ export default class GameAndScoreboard extends React.Component {
 
                 ${notMobile} {
                     flex-direction: row;
-                    justify-content: center;
+                    justify-content: space-around;
                     width: 90%;
                     flex-flow: row wrap;
                 }

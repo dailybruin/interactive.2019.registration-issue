@@ -8,6 +8,36 @@ import rip from "./rip.png";
 import { mobile, notMobile } from "../Shared/mediaQueries";
 
 class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: false
+    };
+    this.listenScrollEvent = this.listenScrollEvent.bind(this);
+  }
+
+  listenScrollEvent(e) {
+    if (window.scrollY >= window.innerHeight) {
+      this.setState({ show: true });
+    } else {
+      this.setState({ show: false });
+    }
+  }
+
+  componentWillMount() {
+    if (window) {
+      window.addEventListener("scroll", this.listenScrollEvent);
+    }
+  }
+
+  componentWillUnmount() {
+    // This fixes the "leaky component" error
+    // Make sure to remove any event listeners you add!
+    if (window) {
+      window.removeEventListener("scroll", this.listenScrollEvent);
+    }
+  }
+
   render() {
     return (
       <div
@@ -21,6 +51,7 @@ class Navbar extends React.Component {
           background-size: auto;
           top: 0;
           z-index: 101;
+          display: ${this.state.show ? "block" : "none"}
         `}
       >
         <div

@@ -2,10 +2,9 @@
 // This does NOT start the server
 // That happens in ./index.js
 const app = require("express")();
-app.set("trust proxy", 1);
+app.set("trust proxy", true);
 
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
 // The body parser module gives us access to a JSON
 // parsed req.body object
 const bodyParser = require("body-parser");
@@ -31,18 +30,8 @@ const corsOptions = {
     optionsSuccessStatus: 200
 };
 
-app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
-
-app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-    res.header("Access-Control-Allow-Origin", whitelist[1]);
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    next();
-});
-
 app.use(sessions);
 app.use(router);
 

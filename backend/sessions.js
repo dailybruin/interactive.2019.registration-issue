@@ -1,16 +1,12 @@
 const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
-const { mongoose } = require("./db");
 
 module.exports = session({
     secret: process.env.SESSION_SECRET,
-    store: new MongoStore({
-        mongooseConnection: mongoose.connection
-    }),
-    resave: false,
+    resave: true,
     saveUninitialized: false,
+    proxy: true,
     cookie: {
-        secure: process.env.NODE_ENV === "production",
+        secure: process.env.NODE_ENV === "production" ? true : false,
         maxAge: 3600000
     }
 });;

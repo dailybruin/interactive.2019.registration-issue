@@ -6,9 +6,7 @@ import { mobile } from "../Shared/mediaQueries";
 export class Section extends React.Component {
     render() {
         const articles = this.props.data.content.map((article, i) => (
-            String(this.props.data.section).toLowerCase() === "opinion"
-                ? <ArticleCard article={Object.assign(article, { italics: true })} key={i} />
-                : <ArticleCard article={article} key={i} />
+            <ArticleCard article={article} key={i} />
         ));
 
         const gridStyles =
@@ -42,7 +40,7 @@ export class Section extends React.Component {
                     text-align: center;
                 `}
             >
-                <a name={this.props.data.section}/>
+                <a name={this.props.data.section} />
                 <h2
                     className={css`
                         font-size: 4rem;

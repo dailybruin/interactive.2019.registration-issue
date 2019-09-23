@@ -56,9 +56,7 @@ class Game extends React.Component {
     }
 
     onLevelDone() {
-        console.log("OnLEVELDONE")
         const { level: old } = this.state;
-        console.log("old level is " + old);
         api.score();
         if (old + 1 >= NUM_LEVELS) {
             this.setState({

@@ -37,7 +37,6 @@ class Board extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Board componentDidMount")
         this.canvas.current.height = this.canvas.current.width;
         const image = new Image();
         image.addEventListener("load", e => this.loadedImage(e, image), false);

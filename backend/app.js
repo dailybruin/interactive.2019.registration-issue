@@ -26,7 +26,7 @@ const corsOptions = {
     credentials: true,
     optionsSuccessStatus: 200
 };
-console.log("SESS SECRET IS " + process.env.SESSION_SECRET)
+
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use(router);

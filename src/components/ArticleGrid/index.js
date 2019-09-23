@@ -15,10 +15,9 @@ export class ArticleGrid extends React.Component {
     componentDidMount() {
         api.getData().then(response => response.json())
             .then(data => {
-                console.log(data);
                 let sections = data.data["data.aml"] ? data.data["data.aml"].sections : [];
                 this.setState({
-                    data: sections.filter(x => String(x.section).toLowerCase() !== "prime")
+                    data: sections
                 });
             });
     }

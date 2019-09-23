@@ -52,7 +52,7 @@ class Navbar extends React.Component {
           background-image: url(${rip});
           background-position: center top;
           background-repeat: no-repeat;
-          background-size: auto;
+          background-size: cover;
           top: 0;
           z-index: 101;
         `}

@@ -2,7 +2,8 @@
 // This does NOT start the server
 // That happens in ./index.js
 const app = require("express")();
-
+// Provides a shred of security in case someone is
+// super dedicated
 const cors = require("cors");
 // The body parser module gives us access to a JSON
 // parsed req.body object
@@ -28,7 +29,6 @@ const corsOptions = {
 console.log("SESS SECRET IS " + process.env.SESSION_SECRET)
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
-app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(router);
 
 module.exports = app;

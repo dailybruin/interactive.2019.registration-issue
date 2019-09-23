@@ -42,7 +42,7 @@ function getUsernameCookie() {
 function setUsername(username) {
     return post(`${API_URL}user`, { username }).then(res => {
         if (res && res.status === 200) {
-            setUsernameCookie()
+            setUsernameCookie(username)
             return "ok";
         } else if (res && res.status === 403) {
             return "banned";
